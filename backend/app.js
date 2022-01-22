@@ -34,8 +34,10 @@ app.listen(port, () => {
 
 
 
-
-
+// .env
+// PORT=8000
+// DATABASE=mongodb://localhost/ecommerce
+// JWT_SECRET=thisisasecretformyapp
 
 
 
