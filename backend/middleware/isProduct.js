@@ -10,6 +10,7 @@ const isProduct = async (req, res, next) => {
         req.product = product
         next()
     } catch (e) {
+        console.log("heer")
         res.status(500).send(e)
     }
 }

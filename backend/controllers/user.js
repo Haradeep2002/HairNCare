@@ -20,7 +20,9 @@ const signin =async (req, res) => {
         const token = await user.generateAuthToken()
         res.status(200).send({ user, token })
     } catch (e) {
-        res.status(401).json({ error: "Invalid credentials" })
+        return res.status(401).json({
+            error: e
+        })
     }
 }
 

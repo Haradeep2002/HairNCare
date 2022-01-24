@@ -55,7 +55,7 @@ const update = async (req, res) => {
 const list = async  (req,res) => {
     let order = req.query.order ? req.query.order : 'asc';
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100;
 
     //.select("-photo")
     try {

@@ -6,7 +6,7 @@ const isAdmin = require('../middleware/isAdmin')
 const isAuth = require('../middleware/isAuth')
 const router = new express.Router()
 
-router.post('/signup',signup,)
+router.post('/signup',signup)
 router.post('/signin', signin)
 router.get('/signout',auth, signout)
 router.get('/secret/:userId',auth,isAuth,isAdmin,(req,res) => {
