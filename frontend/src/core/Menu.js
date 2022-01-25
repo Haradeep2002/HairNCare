@@ -4,14 +4,10 @@ import { isAuthenticated, signout } from "../auth";
 
 const isActive = (history,path) =>{
     if(history.location.pathname === path ){
-        return {
-            color:'#ff9900'
-        }
+        return {color:'#ff9900'}
     }
     else{
-        return{
-            color:'#ffffff'
-        }
+        return{color:'#ffffff'}
     }
 }
 
@@ -20,6 +16,9 @@ const Menu = (props) => {
         <ul className="nav nav-tabs bg-primary">
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(props.history,'/')} to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(props.history,'/shop')} to="/shop">Shop</Link>
             </li>
             {isAuthenticated() && isAuthenticated().user.role === 0 &&
                     (

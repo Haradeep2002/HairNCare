@@ -119,7 +119,7 @@ const listCategories = (req,res) => {
 const listBySearch =async (req, res) => {
     let order = req.body.order ? req.body.order : 'desc';
     let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
-    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let limit = req.body.limit ? parseInt(req.body.limit) : 6;
     let skip = req.body.skip ?parseInt(req.body.skip):0;
     let findArgs = {};
 
@@ -170,4 +170,22 @@ const photo = (req,res,next) =>{
     }
 }
 
-module.exports={create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo}
+const listSearch = (req,res) => {
+    const query = {}
+    if(req.query.search) {
+        query.name = {$regex: req.query.search, $options:'i' }
+        if(req.query.category && req.query.category!='All'){
+            query.category = req.query.category
+        }
+        Product.find(query,(err,products) => {
+            if(err){
+                return res.status(400).json({
+                    error:errorHandler(err)
+                })
+            }
+            res.json(products)
+        }).select('-photo')
+    }
+}
+
+module.exports={create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo,listSearch}

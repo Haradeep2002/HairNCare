@@ -33,7 +33,7 @@ const AddCategory = () => {
         });
     };
     const newCategoryFom = () => (  
-        <form onSubmit={clickSubmit} >
+        <form onSubmit={clickSubmit} className="container-fluid">
             <div className="form-group">
                 <label className="text-muted">Name</label>
                 <input
@@ -45,7 +45,7 @@ const AddCategory = () => {
                     required
                 />
             </div>
-            <button className="btn btn-outline-primary">Create Category</button>
+            <button className="btn btn-outline-primary mt-2">Create Category</button>
         </form>
     );
     const showSuccess = () => {
@@ -72,6 +72,7 @@ const AddCategory = () => {
         <Layout
             title="Add a new category"
             description={`G'day ${user.name}, ready to add a new category?`}
+            className="container-fluid"
         >
             <div className="row">
                 <div className="col-md-8 offset-md-2">
