@@ -3,7 +3,7 @@ const router = express.Router()
 const multer = require('multer')
 
 const {userById} = require('../controllers/user')
-const {create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo} = require("../controllers/product")
+const {create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo,listSearch} = require("../controllers/product")
 const auth = require('../middleware/auth')
 const isAdmin = require('../middleware/isAdmin')
 const isAuth = require('../middleware/isAuth')
@@ -37,6 +37,7 @@ router.get("/products/related/:id",isProduct,listRelated)
 router.get("/products/categories",listCategories)
 router.post("/products/by/search", listBySearch);
 router.get("/product/photo/:id",isProduct,photo)
+router.get("/products/search", listSearch);
 
 router.param("userId",userById)
 

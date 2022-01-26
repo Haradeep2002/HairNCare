@@ -109,7 +109,7 @@ const AddProduct = () => {
                     <Link to="/admin/dashboard" className="text-warning">Back to Dashboard</Link>
                 </div>
                 <div className="col-2">
-                    <button className="btn btn-outline-primary">CreateProduct</button>
+                    <button className="btn btn-outline-primary" >CreateProduct</button>
                 </div>
             </div>
         </form >
@@ -123,8 +123,7 @@ const AddProduct = () => {
 
     const showSuccess = () => (
         <div className="alert alert-info" style={{ display: createdProduct ? '' : 'none' }}>
-            <h2>{`${createdProduct}`} is created!</h2>
-
+            Product {`${createdProduct}`} is created succesfully!!
             {addPhoto()}
         </div>
     );
@@ -138,7 +137,7 @@ const AddProduct = () => {
     const addPhoto = () => {
         localStorage.setItem('product', `${createdProduct}`)
 // console.log('addphoto')
-        return (< div className="mt-5" >
+        return (< div className="" >
             <Link to="/product/photo" className="text-warning">
                 Upload product photo
             </Link>
@@ -147,7 +146,7 @@ const AddProduct = () => {
 
 
     return (
-        <Layout title="Add a new product" description={`G'day ${user.name}, ready to add a new product?`}>
+        <Layout title="Add a new product" description={`G'day ${user.name}, ready to add a new product?`} className="container-fluid">
             <div className="row">
                 <div className="col-md-8 offset-md-2">
 

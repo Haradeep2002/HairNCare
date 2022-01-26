@@ -9,11 +9,14 @@ import AdminDashboard from './user/AdminDashboard';
 import AddCategory from './admin/AddCategory';
 import AddProduct from './admin/AddProduct';
 import ProductImage from './admin/ProductImage';
+import Shop from './core/Shop';
+import Product from './core/Product';
 const Routes = () => {
     return(
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home}></Route>
+                <Route path="/shop" exact component={Shop}></Route>
                 <Route path="/signin" exact component={Signin}></Route>
                 <Route path="/signup" exact component={Signup}></Route>
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard}></PrivateRoute>
@@ -21,6 +24,7 @@ const Routes = () => {
                 <AdminRoute path="/create/category" exact component={AddCategory}></AdminRoute>
                 <AdminRoute path="/create/product" exact component={AddProduct}></AdminRoute>
                 <AdminRoute path="/product/photo" exact component={ProductImage} />
+                <Route path="/product/:id" exact component={Product}></Route>
             </Switch>
         </BrowserRouter>
     )

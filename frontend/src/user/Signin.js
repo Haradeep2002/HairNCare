@@ -44,7 +44,7 @@ const Signin = () => {
         });
     };
     const signInForm = () => (
-        <form>
+        <form> 
 
             <div className="form-group">
                 <label className="text-muted">Email</label>
@@ -55,7 +55,7 @@ const Signin = () => {
                 <label className="text-muted">Password</label>
                 <input onChange={handleChange('password')} type="password" className="form-control" value={password} />
             </div>
-            <button onClick={clickSubmit} className="btn btn-primary">
+            <button onClick={clickSubmit} className="btn btn-primary mt-2">
                 Submit
             </button>
         </form>

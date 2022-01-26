@@ -1,4 +1,5 @@
 import Menu from "./Menu"
+import "../styles.css"
 const Layout = ({title='Title',description='description',className,children}) => {
     return(
         <div>

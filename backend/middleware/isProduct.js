@@ -2,7 +2,7 @@
 const Product = require('../models/product')
 const isProduct = async (req, res, next) => {
     try {
-        const product = await Product.findOne({ _id: req.params.id })
+        const product = await Product.findOne({ _id: req.params.id }).populate("category")
 
         if (!product) {
             throw new Error("Please add product first!");
