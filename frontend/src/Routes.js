@@ -11,6 +11,7 @@ import AddProduct from './admin/AddProduct';
 import ProductImage from './admin/ProductImage';
 import Shop from './core/Shop';
 import Product from './core/Product';
+import Cart from './core/Cart';
 const Routes = () => {
     return(
         <BrowserRouter>
@@ -25,6 +26,7 @@ const Routes = () => {
                 <AdminRoute path="/create/product" exact component={AddProduct}></AdminRoute>
                 <AdminRoute path="/product/photo" exact component={ProductImage} />
                 <Route path="/product/:id" exact component={Product}></Route>
+                <Route path="/cart" exact component={Cart}></Route>
             </Switch>
         </BrowserRouter>
     )
