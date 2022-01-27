@@ -27,7 +27,7 @@ const Cart = () => {
     }
 
     const noItemsMessage = () => {
-        <h2>    Your cart is empty<br />
+        <h2>Your cart is empty<br />
             <Link to="/shop">Continue Shopping</Link>
         </h2>
     }
@@ -37,11 +37,9 @@ const Cart = () => {
         <Layout title="Shopping Cart" description="Manage your cart items. Add, remove, checkout or continue shopping" className="container-fluid" >
             <div className='row'>
                 <div className='col-6'>{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
-            
-
             <div className='col-6'>
                 <h2 className='mb-4'>Your cart summary <hr></hr></h2>
-                {<Checkout products={items} />}
+                {<Checkout products={items} setRun={setRun} run={run} />}
             </div>
             </div>
         </Layout>
