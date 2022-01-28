@@ -180,7 +180,7 @@ const listSearch = (req,res) => {
         Product.find(query,(err,products) => {
             if(err){
                 return res.status(400).json({
-                    error:errorHandler(err)
+                    error:err
                 })
             }
             res.json(products)
@@ -188,4 +188,24 @@ const listSearch = (req,res) => {
     }
 }
 
-module.exports={create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo,listSearch}
+const decreaseQuantity = (req,res,next) => {
+    let bulkOps = req.body.order.products.map((item) => {
+        return{
+            updateOne:{
+                filter:{_id:item._id},
+                update:{$inc:{quantity:-item.count,sold:+item.count}}
+            }
+        }
+    })
+
+    Product.bulkWrite(bulkOps,{},(err,products) => {
+        if(err){
+            return res.status(400).json({
+                error:'Could not update product'
+            })
+        }   
+        next()
+    })
+}
+
+module.exports={create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo,listSearch,decreaseQuantity}

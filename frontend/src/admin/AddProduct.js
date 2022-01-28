@@ -109,7 +109,7 @@ const AddProduct = () => {
                     <Link to="/admin/dashboard" className="text-warning">Back to Dashboard</Link>
                 </div>
                 <div className="col-2">
-                    <button className="btn btn-outline-primary" >CreateProduct</button>
+                    <button className="btn btn-outline-primary" style={{marginTop:'5px'}}>CreateProduct</button>
                 </div>
             </div>
         </form >

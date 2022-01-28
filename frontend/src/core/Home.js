@@ -3,6 +3,7 @@ import { getProducts } from "./apiCore";
 import Layout from "./Layout";
 import Card from "./Card";
 import Search from "./Search";
+import ScrollToTop from "react-scroll-to-top";
 
 const Home = () => {
     const [productsBySell,setProductsBySell] =useState([])
@@ -46,7 +47,7 @@ const Home = () => {
               </div>
           ))}
         </div>
-
+            <hr></hr>
         <h2 className="mb-4 ">Best Sellers</h2>
         <div className="row">
           {productsBySell.map((product,i) => (
@@ -56,8 +57,8 @@ const Home = () => {
           ))}
         </div>
         
-        
-
+        <hr></hr>
+        <ScrollToTop smooth />
       </Layout>
     )
   }

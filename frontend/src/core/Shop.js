@@ -5,7 +5,7 @@ import { getCategories,getFilteredProducts } from './apiCore'
 import Checkbox from './Checkbox'
 import {prices} from  './fixedPrices'
 import RadioBox from './RadioBox'
-
+import ScrollToTop from "react-scroll-to-top";
 const Shop = () => {
     const [categories,setCategories] = useState([])
     const [myFilters, setMyFilters] = useState({
@@ -102,16 +102,18 @@ const Shop = () => {
         <Layout title="Shop Page" description="Ecommerce" className='container-fluid'>
             <div className='row'>
                 <div className='col-2'>
-                    <h4>Filter By categories</h4>
+                    <h4 className='text-success font-weight-bold'>FILTER BY</h4><br></br>
+                    <h4 className='btn btn-info rounded disabled'>Categories</h4>
                     <ul>
                         <Checkbox categories={categories} handleFilters={filters => handleFilters(filters, "category")}></Checkbox>
                     </ul>
-                    <h4>Filter By Price Range</h4>
+                    <h4 className='btn btn-info rounded disabled'>Price Range</h4>
                     <div>
                         <RadioBox prices={prices} handleFilters={filters => handleFilters(filters, "price")}></RadioBox>
                     </div>
                 </div>
-                <div className="col-10">
+                <div className="vr text-success"></div>
+                <div className="col-9">
                     <h2 className="mb-4">
                         Products
                     </h2>
@@ -124,6 +126,8 @@ const Shop = () => {
                     </div>
                     <hr />
                     {loadMoreButton()}
+                    
+                    <ScrollToTop smooth />
                 </div>
             </div>
       </Layout>

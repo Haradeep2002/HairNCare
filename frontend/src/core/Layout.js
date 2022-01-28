@@ -1,15 +1,24 @@
 import Menu from "./Menu"
 import "../styles.css"
-const Layout = ({title='Title',description='description',className,children}) => {
+import React from "react";
+import ScrollToTop from "react-scroll-to-top";
+const Layout = ({title='Title',description='description',className1,children}) => {
     return(
-        <div>
-            <Menu></Menu>
-            <div className="container-fluid p-3 my-3 bg-dark text-white">
-                <h2>{title}</h2>
-                <p className="Lead">{description}</p>
+        <React.Fragment>
+            <div><Menu></Menu></div>
+            
+            <div className="container-fluid bg-dark text-white p-1 text-center">
+                <h2 >{title}</h2>
+                <p className="Lead">{description}...</p>
             </div>
-            <div className={className}>{children}</div>
-        </div>
+            <div className="mt-3">
+            <div className={className1} style={{margin:'50px'}}>{children}</div></div>
+            <ScrollToTop smooth />
+            <footer className="footer bg-light mt-auto py-3">
+                <div className="container">
+                    <span className="text-muted">© 1996-2022, HairNCare.com, Inc. or its affiliates</span></div></footer>
+
+        </React.Fragment>
 
     )
   }

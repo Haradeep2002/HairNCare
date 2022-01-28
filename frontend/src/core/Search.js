@@ -64,7 +64,7 @@ const Search = () => {
     const searchedProducts = (results = []) => {
         return (
             <div>
-                <h2 className="mt-4 mb-4">
+                <h2 className="mt-4 mb-4 bg-success text-white">
                     {searchMessage(searched, results)}
                 </h2>
                 <div className="row">
@@ -92,16 +92,16 @@ const Search = () => {
             <span className="input-group-text">
                 <div className="input-group input-group-lg">
                     <div className="input-group-prepend">
-                        <select className="btn mr-2" onChange={handleChange('category')}>
-                            <option value="All">Select Catgeory</option>
+                        <select className="btn" style={{marginTop:'5px'}} onChange={handleChange('category')}>
+                            <option value="All">Select Category</option>
                             {categories.map((c,i) =>(
                                 <option key={i} value={c._id}>{c.name}</option>
                             ))}
                         </select>
                     </div>
-                    <input type="search" className="form-control" onChange={handleChange('search')} placeholder="Search By Name"></input>
+                    <input type="search" className="form-control" style={{marginLeft:'10px'}} onChange={handleChange('search')} placeholder="Search By Name"></input>
                 </div>
-                <div className="btn input-group-append" style={{border:'none'}}>
+                <div className="btn input-group-append" >
                     <button className="input-group-text">Search</button>
                 </div>
             </span>
@@ -115,6 +115,7 @@ const Search = () => {
             <div className="container-fluid mb-3">
                 {searchedProducts(results)}
             </div>
+            <hr></hr>
             {/* {JSON.stringify(results)} */}
         </div>
     )

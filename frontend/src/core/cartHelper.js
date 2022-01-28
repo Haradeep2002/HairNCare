@@ -84,5 +84,4 @@ export const emptyCart = next => {
         localStorage.removeItem('cart')
         next()
     }
-
 }
