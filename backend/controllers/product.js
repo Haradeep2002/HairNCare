@@ -34,9 +34,9 @@ const read =  (req, res) => {
 const remove =  async(req, res) => {
     try {
         await req.product.remove()
-        res.send("product removed")
+        res.json("product removed")
     } catch (e) {
-        res.status(500).send(e)
+        res.status(500).json(e)
         console.log(e)
     }
 }
@@ -46,9 +46,10 @@ const update = async (req, res) => {
     try {
         updates.forEach((update) => req.product[update] = req.body[update])
         await req.product.save()
-        res.send(req.product)
+        // console.log(req.product)
+        return res.json(req.product)
     } catch (e) {
-        res.status(400).send(e)
+        return res.status(400).json(e)
     }
 }
 

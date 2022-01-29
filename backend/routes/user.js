@@ -1,6 +1,6 @@
 //auth.js+user.js
 const express = require('express')
-const {signup,signin,signout,userById,read,update} = require('../controllers/user')
+const {signup,signin,signout,userById,read,update,purchaseHistory} = require('../controllers/user')
 const auth = require('../middleware/auth')
 const isAdmin = require('../middleware/isAdmin')
 const isAuth = require('../middleware/isAuth')
@@ -16,6 +16,7 @@ router.get('/secret/:userId',auth,isAuth,isAdmin,(req,res) => {
 })
 router.get('/user/:userId',auth,isAuth,read)
 router.patch('/user/:userId',auth,isAuth,update)
+router.get('/orders/by/user/:userId',auth,isAuth,purchaseHistory)
 
 router.param("userId",userById)
 

@@ -1,5 +1,6 @@
 //auth.js+user.js
 const User = require('../models/user')
+const {Order} = require('../models/order')
 const signup =async (req,res) => {
     const user = new User(req.body)
     try{
@@ -95,8 +96,20 @@ const addOrderToUserHistory = (req,res,next) => {
         next()
     })
 }
-
-
+ 
+const purchaseHistory = (req, res) => {
+    Order.find({ user: req.profile._id })
+        .populate('user', '_id name')
+        .sort('-created')
+        .exec((err, orders) => {
+            if (err) {
+                return res.status(400).json({
+                    error: errorHandler(err)
+                });
+            }
+            res.json(orders);
+        });
+};
 module.exports = {
-    signup,signin,signout,userById,read,update,addOrderToUserHistory
+    signup,signin,signout,userById,read,update,addOrderToUserHistory,purchaseHistory
 }
