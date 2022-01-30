@@ -61,7 +61,7 @@ const Profile = ({match}) => {
                 <input type="password" onChange={handleChange('password')} required className="form-control" value={password} />
             </div>
 
-            <button className="btn btn-primary">
+            <button className="btn btn-primary mt-2">
                 Submit
             </button>
         </form>

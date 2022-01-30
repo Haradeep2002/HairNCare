@@ -12,6 +12,7 @@ const Signup = () => {
         loading: false,
         redirectToReferrer: false
     });
+    const [retype,setRetype] = useState('')
 
     const { name,email,password, loading, error, redirectToReferrer } = values;
 
@@ -19,27 +20,41 @@ const Signup = () => {
         setValues({ ...values, error: false, [name]: event.target.value });
     };
 
+    const handlePassword = name => event => {
+        if(password === event.target.value){
+            setValues({ ...values, error: false});
+            setRetype(event.target.value)
+        }
+        else{
+            setValues({ ...values, error: 'Passwords dont match'});
+            setRetype(event.target.value)
+        }
+    };
+
     const clickSubmit = event => {
         event.preventDefault();
-        setValues({ ...values, error: false, loading: true });
-        signup({ name, email, password }).then(data => {
-            //console.log(data)
-            if (data.error) {
-                //console.log(data.error)
-                if (typeof data.error.message !== 'undefined')
-                setValues({ ...values, error: data.error.message, loading: false }) 
-                else 
-                 setValues({ ...values, error: 'Validation failed', success: false });
-            } else {
-                authenticate(data, () => {
-                    setValues({
-                        ...values,
-                        redirectToReferrer: true,
+        if(!error){
+            setValues({ ...values, error: false, loading: true });
+            signup({ name, email, password }).then(data => {
+                //console.log(data)
+                if (data.error) {
+                    //console.log(data.error)
+                    if (typeof data.error.message !== 'undefined')
+                    setValues({ ...values, error: data.error.message, loading: false }) 
+                    else 
+                    setValues({ ...values, error: 'Validation failed', success: false });
+                } else {
+                    authenticate(data, () => {
+                        setValues({
+                            ...values,
+                            redirectToReferrer: true,
 
-                    });
-                })
-            }
-        });
+                        });
+                    })
+                }
+            });
+        }
+        
     };
 
     const signUpForm = () => (
@@ -58,6 +73,12 @@ const Signup = () => {
                 <label className="text-muted">Password</label>
                 <input onChange={handleChange('password')} type="password" className="form-control" value={password} />
             </div>
+
+            <div className="form-group">
+                <label className="text-muted">Retype Password</label>
+                <input onChange={handlePassword()} type="password" className="form-control" value={retype} />
+            </div>
+
             <button onClick={clickSubmit} className="btn btn-primary mt-2">
                 Submit
             </button>
