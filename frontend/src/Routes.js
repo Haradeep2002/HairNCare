@@ -1,4 +1,4 @@
-import {BrowserRouter,Switch,Route} from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Signin from './user/Signin';
 import Signup from './user/Signup';
 import Home from './core/Home';
@@ -14,17 +14,31 @@ import Product from './core/Product';
 import Cart from './core/Cart';
 import Orders from './admin/Orders';
 import Profile from './user/Profile';
+import Help from './core/Help';
+import Hairfall from './help/Hairfall';
 import ManageProducts from './admin/ManageProducts';
 import UpdateProduct from './admin/UpdateProduct';
+import Dandruff from './help/Dandruff';
+import Thin from './help/Thin';
+import Split from './help/Split';
+import Baldness from './help/Baldness';
+import Growth from './help/Growth';
 
 const Routes = () => {
-    return(
+    return (
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/shop" exact component={Shop}></Route>
                 <Route path="/signin" exact component={Signin}></Route>
                 <Route path="/signup" exact component={Signup}></Route>
+                <Route path="/Hairfall" exact component={Hairfall}></Route>
+                <Route path="/Growth" exact component={Growth}></Route>
+                <Route path="/Split" exact component={Split}></Route>
+                <Route path="/Dandruff" exact component={Dandruff}></Route>
+                <Route path="/Baldness" exact component={Baldness}></Route>
+                <Route path="/Thin" exact component={Thin}></Route>
+                <Route path="/help" exact component={Help}></Route>
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard}></PrivateRoute>
                 <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}></AdminRoute>
                 <AdminRoute path="/create/category" exact component={AddCategory}></AdminRoute>
@@ -40,6 +54,5 @@ const Routes = () => {
         </BrowserRouter>
     )
 }
-  
+
 export default Routes;
-  
