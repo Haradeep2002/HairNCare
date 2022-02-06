@@ -1,49 +1,71 @@
-import { useState } from "react";
-import Layout from "./Layout";
-import { createBlog } from "./apiCore";
-import { isAuthenticated } from "../auth";
+import React, { useState, useEffect } from 'react';
+import { API } from '../config';
+import { getProducts } from './apiCore';
+import { withRouter } from 'react-router-dom';
+const Blog = (props) => {
 
-const Blog = () => {
-    const [id,setId] = useState('')
-    const {user,token} = isAuthenticated()
-    const handleChange = event => {
-        setId(event.target.value)
-    };
+    const [products, setProducts] = useState(false)
+    const [error, setError] = useState([])
+    const [myIndex, setMyindex] = useState(0);
 
-    const clickSubmit = event => {
-        event.preventDefault();
-        console.log(user._id,token,id)
-        createBlog(user._id,token,id).then(data => {
-            // if(data.error)console.log(data.error)
-            // else{
-                console.log(data)
-            // }/
+    const loadProducts = () => {
+        getProducts('createdAt').then(data => {
+            if (data.error)
+                setError(data.error)
+            else {
+                console.log("in")
+                setProducts(data)
+                //getPhotos()
+            }
         })
-    };
+        //console.log(products)
+    }
 
 
-    const signUpForm = () => (
-        <form>
-            <div className="form-group">
-                <label className="text-muted">Enter product Id</label>
-                <input onChange={handleChange} type="text" className="form-control" value={id} />
-            </div>
+    useEffect(() => {
+        loadProducts()
+    }, [])
 
-            <button onClick={clickSubmit} className="btn btn-primary mt-2">
-                Submit
-            </button>
-        </form>
-    );
-    return(
-        <Layout
-        title="Signup"
-        description="Signup to Node React E-commerce App"
-        className="container col-md-8 offset-md-2"
-    >
-        {signUpForm()}
-        {/* {redirectUser()} */}
-    </Layout>
+    const handleChange = () => {
+        const n = products.length;
+        console.log(myIndex)
+        if (myIndex >= n - 1)
+
+            setMyindex(0);
+        else
+            setMyindex(myIndex + 1);
+
+    }
+
+    const clickHandle = () => {
+        props.history.push(`/product/${products[myIndex]._id}`);
+    }
+    const handleChangeback = () => {
+        const n = products.length;
+        console.log(myIndex)
+        if (myIndex <= 0)
+            setMyindex(n - 1);
+        else
+            setMyindex(myIndex - 1);
+
+    }
+    return (
+
+        <div>
+
+            {products &&
+                <div className='row'>
+
+                    <img className='col-1 ' height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/left2-51.png" onClick={handleChangeback} style={{ marginTop: '200px' }} />
+                    <img className="col-10 px-5" src={`${API}/product/photo/${products[myIndex]._id}`} style={{ height: '480px', cursor: 'pointer' }} onClick={clickHandle} />
+                    <img className='col-1' height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/right2-512.png" onClick={handleChange} style={{ marginTop: '200px' }} />
+
+                </div>
+            }
+        </div>
+
     )
+
 }
 
-export default Blog;
+export default withRouter(Blog);
