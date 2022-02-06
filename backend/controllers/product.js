@@ -2,36 +2,36 @@ const Product = require('../models/product')
 const sharp = require('sharp')
 
 const addPhoto = async (req, res) => {
-    try{
+    try {
         const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
         // console.log(buffer)
         req.product.photo = buffer
-        await req.product.save()    
+        await req.product.save()
 
         res.status(200).send(req.product);
-        }catch(error){
-            res.status(400).send({ error: error.message })
-        }
+    } catch (error) {
+        res.status(400).send({ error: error.message })
+    }
 }
 
 const create = async (req, res) => {
     const product = new Product(req.body)
-    try{
+    try {
         await product.save()
         res.status(200).send(product);
-    }catch(err){
+    } catch (err) {
         return res.status(400).send({
             error: err
         })
     }
 }
 
-const read =  (req, res) => {
-    req.product.photo=undefined
-    return res.json(req.product) 
+const read = (req, res) => {
+    req.product.photo = undefined
+    return res.json(req.product)
 }
 
-const remove =  async(req, res) => {
+const remove = async (req, res) => {
     try {
         await req.product.remove()
         res.json("product removed")
@@ -53,7 +53,7 @@ const update = async (req, res) => {
     }
 }
 
-const list = async  (req,res) => {
+const list = async (req, res) => {
     let order = req.query.order ? req.query.order : 'asc';
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
     let limit = req.query.limit ? parseInt(req.query.limit) : 100;
@@ -78,16 +78,16 @@ const list = async  (req,res) => {
 
     //     res.status(200).send(products)
     // })
-    
+
 }
 
-const listRelated = async (req,res) => {
+const listRelated = async (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 6;
     try {
         //  console.log(req.product.category)
-        const products = await Product.find({ _id:{$ne:req.product},category: req.product.category })
+        const products = await Product.find({ _id: { $ne: req.product }, category: req.product.category })
             //.select("-photo")
-            .populate("category","name")
+            .populate("category", "name")
             .limit(limit)
 
         res.status(200).send(products)
@@ -106,7 +106,7 @@ const listRelated = async (req,res) => {
     // })
 }
 
-const listCategories = (req,res) => {
+const listCategories = (req, res) => {
     Product.distinct("category", {}, (err, product) => {
         if (err) {
             return res.status(400).json({
@@ -117,11 +117,11 @@ const listCategories = (req,res) => {
     })
 }
 
-const listBySearch =async (req, res) => {
+const listBySearch = async (req, res) => {
     let order = req.body.order ? req.body.order : 'desc';
     let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
     let limit = req.body.limit ? parseInt(req.body.limit) : 6;
-    let skip = req.body.skip ?parseInt(req.body.skip):0;
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let findArgs = {};
 
     // console.log(order, sortBy, limit, skip, req.body.filters);
@@ -141,25 +141,25 @@ const listBySearch =async (req, res) => {
             }
         }
     }
-    try{
+    try {
         const data = await Product.find(findArgs)
-        // Product.find(findArgs)
+            // Product.find(findArgs)
             .populate('category')
             .sort([[sortBy, order]])
             .skip(skip)
             .limit(limit)
         res.json({
-                size: data.length,
-                data
-            });
-    }catch(err){
+            size: data.length,
+            data
+        });
+    } catch (err) {
         return res.status(400).json({
             error: err
         });
     }
 }
 
-const photo = (req,res,next) =>{
+const photo = (req, res, next) => {
     if (req.product.photo) {
         res.set('Content-type', req.product.photo.type)
         return res.send(req.product.photo)
@@ -171,17 +171,17 @@ const photo = (req,res,next) =>{
     }
 }
 
-const listSearch = (req,res) => {
+const listSearch = (req, res) => {
     const query = {}
-    if(req.query.search) {
-        query.name = {$regex: req.query.search, $options:'i' }
-        if(req.query.category && req.query.category!='All'){
+    if (req.query.search) {
+        query.name = { $regex: req.query.search, $options: 'i' }
+        if (req.query.category && req.query.category != 'All') {
             query.category = req.query.category
         }
-        Product.find(query,(err,products) => {
-            if(err){
+        Product.find(query, (err, products) => {
+            if (err) {
                 return res.status(400).json({
-                    error:err
+                    error: err
                 })
             }
             res.json(products)
@@ -189,24 +189,24 @@ const listSearch = (req,res) => {
     }
 }
 
-const decreaseQuantity = (req,res,next) => {
+const decreaseQuantity = (req, res, next) => {
     let bulkOps = req.body.order.products.map((item) => {
-        return{
-            updateOne:{
-                filter:{_id:item._id},
-                update:{$inc:{quantity:-item.count,sold:+item.count}}
+        return {
+            updateOne: {
+                filter: { _id: item._id },
+                update: { $inc: { quantity: -item.count, sold: +item.count } }
             }
         }
     })
 
-    Product.bulkWrite(bulkOps,{},(err,products) => {
-        if(err){
+    Product.bulkWrite(bulkOps, {}, (err, products) => {
+        if (err) {
             return res.status(400).json({
-                error:'Could not update product'
+                error: 'Could not update product'
             })
-        }   
+        }
         next()
     })
 }
 
-module.exports={create,addPhoto,read,remove,update,list,listRelated,listCategories,listBySearch,photo,listSearch,decreaseQuantity}
+module.exports = { create, addPhoto, read, remove, update, list, listRelated, listCategories, listBySearch, photo, listSearch, decreaseQuantity }
