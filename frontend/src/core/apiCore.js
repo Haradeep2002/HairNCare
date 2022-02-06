@@ -122,3 +122,30 @@ export const createOrder = (userId,token,createOrder) => {
         })
         .catch(err => console.log(err));
 };
+
+export const createBlog = (userId,token,createOrder) => {
+    console.log(userId,token,createOrder)
+    return fetch(`${API}/blog/create/${userId}`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body:JSON.stringify({id:createOrder})
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+export const getBlogs = () => {
+    return fetch(`${API}/blogs`, {
+        method: 'GET',
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

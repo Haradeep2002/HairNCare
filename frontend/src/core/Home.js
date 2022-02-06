@@ -1,9 +1,9 @@
 import React,{ useState,useEffect } from "react";
-import { getProducts } from "./apiCore";
+import { getBlogs, getProducts } from "./apiCore";
 import Layout from "./Layout";
 import Card from "./Card";
 import Search from "./Search";
-import ScrollToTop from "react-scroll-to-top";
+
 
 const Home = () => {
     const [productsBySell,setProductsBySell] =useState([])
@@ -35,10 +35,16 @@ const Home = () => {
     useEffect(() => {
       loadProductsByArrival()
       loadProductsBySell()
+      getBlogs().then(data => 
+        data.map((m,i) => {
+          console.log(m)
+        }))
+      
     },[])
     return(
       <Layout title="Home Page" description="Ecommerce" className='container-fluid'>
         <Search></Search>
+        
         <h2 className="mb-4 ">New Arrivals</h2>
         <div className="row">
           {productsByArrival.map((product,i) => (
@@ -58,7 +64,6 @@ const Home = () => {
         </div>
         
         <hr></hr>
-        <ScrollToTop smooth />
       </Layout>
     )
   }
