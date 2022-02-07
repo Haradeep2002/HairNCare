@@ -42,18 +42,24 @@ const Home = () => {
     <Layout title="Home Page" description="Ecommerce" className='container-fluid'>
 
       <Search></Search>
-      <h2 className="mb-4 " style={{ color: 'blue' }}>New Arrivals</h2>
-      <Blog />
+      <div style={{ backgroundColor: '#001233' }}>
+        <h1 style={{ color: '#EFE0CA', marginLeft: '40%' }}>New Arrivals</h1>
+
+        <Blog />
+      </div>
 
 
-      <hr></hr>
-      <h2 className="mb-4 " style={{ color: 'blue' }}>Best Sellers</h2>
+      <div style={{ backgroundColor: '#001233' }}>
+        <h1 style={{ paddingBottom: '10px', color: '#EFE0CA', marginLeft: '40%', marginBottom: '40px' }}>Best Sellers</h1>
+      </div>
       <div className="row">
         {productsBySell.map((product, i) => (
           <div key={i} className='col-4 mb-3'>
             <Card product={product} />
           </div>
+
         ))}
+
       </div>
 
       <hr></hr>

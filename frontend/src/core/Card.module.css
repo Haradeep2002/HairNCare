@@ -1,0 +1,14 @@
+.div{
+    background-color: #EFE0CA;
+    transition: transform .1s;
+}
+.title{
+    background-color:#001233;
+    color: #EFE0CA;
+}
+.body{
+    color: #001123;
+}
+.div:hover {
+    transform: scale(1.02); }
+
