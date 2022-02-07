@@ -2,19 +2,19 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated, signout } from "../auth";
 import { itemTotal } from "./cartHelper";
-
+import classes from './Menu.module.css'
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
-        return { color: '#ff9900' }
+        return { color: 'orange' }
     }
     else {
-        return { color: '#ffffff' }
+        return { color: '#EFE0CA' }
     }
 }
 
 const Menu = (props) => {
     return (<div>
-        <ul className="nav nav-tabs bg-primary justify-content-start" style={{ float: 'left', width: '50%', margin: 0, padding: 0 }}>
+        <ul className={`nav nav-tabs justify-content-start ${classes.nav}`} style={{ float: 'left', width: '50%', margin: 0, padding: 0 }}>
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(props.history, '/')} to="/">Home</Link>
             </li>
@@ -50,7 +50,7 @@ const Menu = (props) => {
                 <Link className="nav-link" style={isActive(props.history, '/help')} to="/help">Need Help?</Link>
             </li>
         </ul>
-        <ul className="nav nav-tabs bg-primary justify-content-end mt-0" style={{ float: 'right', width: '50%', margin: '0', padding: '0' }}>
+        <ul className={`nav nav-tabs justify-content-end ${classes.nav}`} style={{ float: 'right', width: '50%', margin: '0', padding: '0' }}>
             {!isAuthenticated() &&
                 <React.Fragment>
                     <li className="nav-item">

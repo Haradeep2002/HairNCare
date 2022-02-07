@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API } from '../config';
 import { getProducts } from './apiCore';
 import { withRouter } from 'react-router-dom';
+import classes from './Blog.module.css'
 const Blog = (props) => {
 
     const [products, setProducts] = useState(false)
@@ -51,18 +52,19 @@ const Blog = (props) => {
     }
     return (
 
-        <div>
+        <div className={classes.outer}>
 
             {products &&
-                <div className='row'>
-
-                    <img className='col-1 ' height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/left2-51.png" onClick={handleChangeback} style={{ marginTop: '200px' }} />
-                    <img className="col-10 px-5" src={`${API}/product/photo/${products[myIndex]._id}`} style={{ height: '480px', cursor: 'pointer' }} onClick={clickHandle} />
-                    <img className='col-1' height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/right2-512.png" onClick={handleChange} style={{ marginTop: '200px' }} />
+                <div className={`${classes.main}`}>
+                    <img className={classes.zoom1} height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/left2-51.png" onClick={handleChangeback} />
+                    <span className={classes.image}>
+                        <img className={` ${classes.mydiv}`} src={`${API}/product/photo/${products[myIndex]._id}`} style={{ height: '480px', cursor: 'pointer' }} onClick={clickHandle} /><i class="fa fa-search fa-3x" />
+                    </span>
+                    <img className={classes.zoom2} height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/right2-512.png" onClick={handleChange} />
 
                 </div>
             }
-        </div>
+        </div >
 
     )
 

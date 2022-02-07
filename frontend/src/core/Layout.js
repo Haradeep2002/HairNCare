@@ -2,17 +2,18 @@ import Menu from "./Menu"
 import "../styles.css"
 import React from "react";
 import ScrollToTop from "react-scroll-to-top";
-const Layout = ({title='Title',description='description',className1,children}) => {
-    return(
+import classes from './Layout.module.css';
+const Layout = ({ title = 'Title', description = 'description', className1, children }) => {
+    return (
         <React.Fragment>
             <div><Menu></Menu></div>
-            
-            <div className="container-fluid bg-dark text-white p-1 text-center">
+
+            <div className={` ${classes.myclass} container-fluid p-1 text-center`}>
                 <h2 >{title}</h2>
                 <p className="Lead">{description}...</p>
             </div>
             <div className="mt-3">
-            <div className={className1} style={{margin:'50px'}}>{children}</div></div>
+                <div className={className1} style={{ margin: '50px' }}>{children}</div></div>
             <ScrollToTop smooth />
             <footer className="footer bg-light mt-auto py-3">
                 <div className="container">
@@ -21,7 +22,6 @@ const Layout = ({title='Title',description='description',className1,children}) =
         </React.Fragment>
 
     )
-  }
-  
-  export default Layout;
-  
+}
+
+export default Layout;
