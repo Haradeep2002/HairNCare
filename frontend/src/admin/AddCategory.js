@@ -3,7 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { createCategory } from "./apiAdmin";
-
+import './styles.css'
 const AddCategory = () => {
     const [name, setName] = useState("");
     const [error, setError] = useState(false);
@@ -45,7 +45,7 @@ const AddCategory = () => {
                     required
                 />
             </div>
-            <button className="btn btn-outline-primary mt-2">Create Category</button>
+            <button className="btn btn-dark mt-2">Create Category</button>
         </form>
     );
     const showSuccess = () => {
@@ -62,7 +62,7 @@ const AddCategory = () => {
 
     const goBack = () => (
         <div className="mt-5">
-            <Link to="/admin/dashboard" className="text-warning">
+            <Link to="/admin/dashboard" className="text-dark" style={{ border: '2px solid #000133', backgroundColor: '#EFE0CA', color: '#001233', textDecoration: 'none', padding: '10px' }}>
                 Back to Dashboard
             </Link>
         </div>

@@ -1,32 +1,39 @@
+import React,{ Suspense, lazy } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Signin from './user/Signin';
-import Signup from './user/Signup';
-import Home from './core/Home';
-import PrivateRoute from './auth/PrivateRoute';
-import Dashboard from './user/UserDashboard';
-import AdminRoute from './auth/AdminRoute';
-import AdminDashboard from './user/AdminDashboard';
-import AddCategory from './admin/AddCategory';
-import AddProduct from './admin/AddProduct';
-import ProductImage from './admin/ProductImage';
-import Shop from './core/Shop';
-import Product from './core/Product';
-import Cart from './core/Cart';
-import Orders from './admin/Orders';
-import Profile from './user/Profile';
-import Help from './core/Help';
-import Hairfall from './help/Hairfall';
-import ManageProducts from './admin/ManageProducts';
-import UpdateProduct from './admin/UpdateProduct';
-import Dandruff from './help/Dandruff';
-import Thin from './help/Thin';
-import Split from './help/Split';
-import Baldness from './help/Baldness';
-import Growth from './help/Growth';
+const Signin = lazy(() => import('./user/Signin'));
+const Signup = lazy(() => import('./user/Signup'));
+const Home = lazy(() => import('./core/Home'));
+const PrivateRoute = lazy(() => import('./auth/PrivateRoute'));
+const Dashboard = lazy(() => import('./user/UserDashboard'));
+const AdminRoute = lazy(() => import('./auth/AdminRoute'));
+const AdminDashboard = lazy(() => import('./user/AdminDashboard'));
+const AddCategory = lazy(() => import('./admin/AddCategory'));
+const AddProduct = lazy(() => import('./admin/AddProduct'));
+const ProductImage = lazy(() => import('./admin/ProductImage'));
+const Shop = lazy(() => import('./core/Shop'));
+const Product = lazy(() => import('./core/Product'));
+const Cart = lazy(() => import('./core/Cart'));
+const Orders = lazy(() => import('./admin/Orders'));
+const Profile = lazy(() => import('./user/Profile'));
+const Help = lazy(() => import('./core/Help'));
+const Hairfall = lazy(() => import('./help/Hairfall'));
+const ManageProducts = lazy(() => import('./admin/ManageProducts'));
+const UpdateProduct = lazy(() => import('./admin/UpdateProduct'));
+const Dandruff = lazy(() => import('./help/Dandruff'));
+const Thin = lazy(() => import('./help/Thin'));
+const Split = lazy(() => import('./help/Split'));
+const Baldness = lazy(() => import('./help/Baldness'));
+const Growth = lazy(() => import('./help/Growth'));
+const Blog = lazy(() => import('./core/Blog'));
+const NotFound = lazy(() => import('./notfound'));
+
 
 const Routes = () => {
     return (
         <BrowserRouter>
+        <Suspense fallback={<div style={{backgroundColor: '#001233' }}>
+    <h1 style={{color: '#EFE0CA'}}>Loading...</h1>
+  </div>}>
             <Switch>
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/shop" exact component={Shop}></Route>
@@ -51,7 +58,9 @@ const Routes = () => {
                 <PrivateRoute path="/admin/products" exact component={ManageProducts}></PrivateRoute>
                 <AdminRoute path="/admin/product/update/:id" exact component={UpdateProduct}></AdminRoute>
                 <AdminRoute path="/admin/blog" exact component={Blog}></AdminRoute>
+                <Route component={NotFound} ></Route>
             </Switch>
+            </Suspense>
         </BrowserRouter>
     )
 }

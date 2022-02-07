@@ -119,7 +119,7 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                             flow: 'vault'
                         }
                     }} onInstance={instance => (data.instance = instance)}></DropIn>
-                    <button className='btn btn-success col-12' onClick={buy}>Pay</button>
+                    <button className='btn btn-dark col-12' onClick={buy}>Pay</button>
                 </div>
             ) : null}
         </div>

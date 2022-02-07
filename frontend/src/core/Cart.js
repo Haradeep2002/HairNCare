@@ -18,9 +18,14 @@ const Cart = () => {
                 <h2 className='mb-4' style={{ backgroundColor: '#001233', color: '#EFE0CA', padding: '10px' }}>Your cart has {`${items.length}`} items</h2>
 
                 {
-                    items.map((product, i) => (<Card key={i} product={product} showAddToCartButton={false} cartUpdate={true}
+                    items.map((product, i) => (
+                        <div className='py-3'>
+                    <Card key={i} product={product} showAddToCartButton={false} cartUpdate={true}
                         showRemoveProductButton={true} setRun={setRun}
-                        run={run} />))
+                        run={run}/>
+                        </div>
+                        )
+                        )
                 }
                 <h4>Click on <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSKDgXbbRPqpzt5-E9C0BI0ySBHY-OT9yofib4qnedUxCEbyzV1" height="40" width="40px" alt="Up arrow button"></img> to Proceed for payment</h4>
             </div>

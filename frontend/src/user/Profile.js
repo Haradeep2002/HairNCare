@@ -61,7 +61,7 @@ const Profile = ({match}) => {
                 <input type="password" onChange={handleChange('password')} required className="form-control" value={password} />
             </div>
 
-            <button className="btn btn-primary mt-2">
+            <button className="btn btn-dark mt-2">
                 Submit
             </button>
         </form>
@@ -73,7 +73,7 @@ const Profile = ({match}) => {
 
     return (
         <Layout title="Profile" description="Update your profile" className="container-fluid">
-            <h2 className="mb-4">Profile update</h2>
+            <h2 className="mb-4" style={{color:'#EFE0CA',backgroundColor:'#001233',padding:'10px'}}>Profile update</h2>
             {profileUpdate(name, password)}
             {redirectUser(success)}
             {/* {JSON.stringify(values)} */}

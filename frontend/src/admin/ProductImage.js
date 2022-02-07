@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 import { API } from '../config';
 import Layout from "../core/Layout";
 import { getCategories } from "./apiAdmin";
+import './styles.css'
 
 const ProductImage = () => {
     const [success,setsuccess]=useState(false)
@@ -85,14 +86,14 @@ const ProductImage = () => {
     return (
         <Layout title="Upload image of your product" description="Upload image">
         {!success && 
-        <div className="container mx-auto mt-2 p-3 my-3 bg-dark text-white">
+        <div className="container mx-auto mt-2 p-3 my-3" style={{color:'#EFE0CA',backgroundColor:'#001233'}}>
                 <form className="mb-3" onSubmit={uploadPhoto}>
                     <div className="form-group">
-                        <div className="container  p-3 my-3 bg-dark text-white">
+                        <div className="container  p-3 my-3 " style={{color:'#EFE0CA',backgroundColor:'#001233'}}>
                         <input onChange={handleChange('photo')} required type="file" name="photo" accept="image/*" />
                         </div>
-                        <div className="container p-3 my-3 bg-dark text-white">
-                            <button className="btn btn-outline-primary">Add photo</button>
+                        <div className="container p-3 my-3" style={{color:'#EFE0CA',backgroundColor:'#001233'}}>
+                            <button className="btn btn-secondary">Add photo</button>
                         </div>
                     </div>
                 </form >
@@ -102,7 +103,8 @@ const ProductImage = () => {
         {success && 
             <div className="container mx-auto mt-2 p-3 my-3">
                 <h4 className="text-success">Product Added Successfully</h4>
-                <Link to="/admin/dashboard" className="text-warning">
+                <br></br>
+                <Link to="/admin/dashboard" style={{ border: '2px solid #000133', backgroundColor: '#EFE0CA', color: '#001233', textDecoration: 'none', padding: '10px' }}>
                     Back to Dashboard
                 </Link>
             </div>

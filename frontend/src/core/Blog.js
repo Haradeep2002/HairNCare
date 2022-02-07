@@ -58,7 +58,7 @@ const Blog = (props) => {
                 <div className={`${classes.main}`}>
                     <img className={classes.zoom1} height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/left2-51.png" onClick={handleChangeback} />
                     <span className={classes.image}>
-                        <img className={` ${classes.mydiv}`} src={`${API}/product/photo/${products[myIndex]._id}`} style={{ height: '480px', cursor: 'pointer' }} onClick={clickHandle} /><i class="fa fa-search fa-3x" />
+                        <img className={` ${classes.mydiv}`} src={`${API}/product/photo/${products[myIndex]._id}`} style={{ height: '350px', cursor: 'pointer' }} onClick={clickHandle} /><i class="fa fa-search fa-3x" />
                     </span>
                     <img className={classes.zoom2} height="60px" src="https://cdn2.iconfinder.com/data/icons/arrows-vol-1-1/32/right2-512.png" onClick={handleChange} />
 

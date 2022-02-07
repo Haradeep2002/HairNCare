@@ -6,22 +6,19 @@ const AdminDashboard = () => {
   const adminLinks = () => {
     return (
         <div className="card">
-            <h4 className="card-header">Admin Links</h4>
+            <h4 className="card-header" style={{ backgroundColor: '#001233', color: '#EFE0CA', padding: '10px' }}>Admin Links</h4>
             <ul className="list-group">
-                <li className="list-group-item">
-                    <Link className="nav-link" to="/create/category">Create Category</Link>
+                <li className="list-group-item"  style={{ backgroundColor: '#EFE0CA', color: '#001233' }}>
+                    <Link style={{ backgroundColor: '#EFE0CA' }} className="nav-link" to="/create/category">Create Category</Link>
                 </li>
-                <li className="list-group-item">
-                    <Link className="nav-link" to="/create/product">Create Product</Link>
+                <li style={{ backgroundColor: '#EFE0CA', color: '#001233' }} className="list-group-item">
+                    <Link style={{ backgroundColor: '#EFE0CA' }} className="nav-link" to="/create/product">Create Product</Link>
                 </li>
-                <li className="list-group-item">
-                    <Link className="nav-link" to="/admin/orders">View Orders</Link>
+                <li style={{ backgroundColor: '#EFE0CA', color: '#001233' }} className="list-group-item">
+                    <Link style={{ backgroundColor: '#EFE0CA' }} className="nav-link" to="/admin/orders">View Orders</Link>
                 </li>
-                <li className="list-group-item">
-                    <Link className="nav-link" to="/admin/products">Manage products</Link>
-                </li>
-                <li className="list-group-item">
-                    <Link className="nav-link" to="/admin/blog">Add products to blog</Link>
+                <li style={{ backgroundColor: '#EFE0CA', color: '#001233' }} className="list-group-item">
+                    <Link style={{ backgroundColor: '#EFE0CA' }} className="nav-link" to="/admin/products">Manage products</Link>
                 </li>
             </ul>
         </div>
@@ -30,11 +27,11 @@ const AdminDashboard = () => {
 
   const adminInfo = () => {
     return (<div className="card mb-5">
-        <h3 className="card-header">User Information</h3>
+        <h3 style={{ backgroundColor: '#001233', color: '#EFE0CA' }}  className="card-header">User Information</h3>
         <ul className="list-group">
-            <li className="list-group-item">{name}</li>
-            <li className="list-group-item">{email}</li>
-            <li className="list-group-item">{role === 1 ? 'Admin' : 'Registered User'}</li>
+            <li style={{ backgroundColor: '#EFE0CA', color: '#001233' }}  className="list-group-item">{name}</li>
+            <li style={{ backgroundColor: '#EFE0CA', color: '#001233' }}  className="list-group-item">{email}</li>
+            <li style={{ backgroundColor: '#EFE0CA', color: '#001233' }}  className="list-group-item">{role === 1 ? 'Admin' : 'Registered User'}</li>
         </ul>
     </div>)
   }

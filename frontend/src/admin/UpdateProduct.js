@@ -3,6 +3,7 @@ import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 import { getProduct ,getCategories, updateProduct} from './apiAdmin';
+import './styles.css'
 
 const UpdateProduct = ({match}) => {
     const [values, setValues] = useState({
@@ -118,10 +119,12 @@ const UpdateProduct = ({match}) => {
 
             <div className="row">
                 <div className="col-10">
-                    <Link to="/admin/dashboard" className="text-warning">Back to Dashboard</Link>
+                    <br></br><br></br>
+                    <Link to="/admin/products" style={{ border: '2px solid #000133', backgroundColor: '#EFE0CA', color: '#001233', textDecoration: 'none', padding: '10px' ,marginTop:'10px'}}>Back to Manage Products</Link>
                 </div>
-                <div className="col-2">
-                    <button className="btn btn-outline-primary" style={{marginTop:'5px'}}>Update Product</button>
+                <div className="col-2" >
+                    <br></br>
+                    <button className="btn btn-dark" style={{marginTop:'5px'}}>Update Product</button>
                 </div>
             </div>
         </form >
@@ -150,7 +153,8 @@ const UpdateProduct = ({match}) => {
         localStorage.setItem('product', `${createdProduct}`)
 // console.log('addphoto')
         return (< div className="" >
-            <Link to="/product/photo" className="text-warning">
+            <br></br>
+            <Link to="/product/photo" style={{ border: '2px solid #000133', backgroundColor: '#EFE0CA', color: '#001233', textDecoration: 'none', padding: '10px' ,marginTop:'10px'}}>
                 Upload product photo
             </Link>
         </div >);

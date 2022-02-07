@@ -4,6 +4,7 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders, getStatusValues ,updateOrderStatus} from "./apiAdmin";
 import moment from "moment";
+import './styles.css'
 
 const Orders = () => {
     const [orders,setOrders] = useState([])
@@ -25,6 +26,15 @@ const Orders = () => {
 
     const searchData = () => {
         const d = orders.find(element => element._id === search)
+        if(d === -1){
+            console.log(d)
+           return( <div className="col-10">
+                <h1 className='display-2' style={{ backgroundColor: '#001233',color: '#EFE0CA',padding:'10px' }}>No products found</h1>
+                    <br></br><br></br>
+                    <Link to="/admin/dashboard" exact style={{ border: '2px solid #000133', backgroundColor: '#EFE0CA', color: '#001233', textDecoration: 'none', padding: '10px' ,marginTop:'10px'}}>Back to Manage Orders</Link>
+            </div>
+           )
+        }
         setData({...data,results:d,searched:true})
     }
 
@@ -45,12 +55,12 @@ const Orders = () => {
     const searchedProducts = (order = []) => {
         return (
             <div>
-                <h2 className="mt-4 mb-4 bg-success text-white">
+                <h2 className="mt-4 mb-4">
                     {searchMessage(searched, order)}
                 </h2>
-                <div className='card rounded border border-dark p-4 mb-5 bg-dark'>
-                    <h4 className="card-header bg-success">Order Id: {order._id}</h4>
-                    <div className="card-body rounded border border-success p-2 m-2">
+                <div className='card rounded p-4 mb-5' style={{backgroundColor:'#001233'}}>
+                    <h4 className="card-header" style={{backgroundColor:'#EFE0CA',color:'#001233',marginBottom:'10px'}}>Order Id: {order._id}</h4>
+                    <div className="card-body rounded border border-secondary p-2 m-2" >
                         <ul className='list-group mb-2'>
                             <li className='list-group-item'>{!s && showStatus(order)}</li>
                             <li className='list-group-item'>{s && <h3 className="mark mb-4">Status Updated</h3>}</li>
@@ -61,9 +71,9 @@ const Orders = () => {
                             <li className='list-group-item'>Delivery Address: {order.address}</li>
                         </ul>
                     </div>
-                    <div className='card-header bg-info mb-3 mt-5'>Total products in the order: {order.products.length}</div>
+                    <div className='card-header mb-3 mt-5' style={{backgroundColor:'#EFE0CA',color:'#001233'}}>Total products in the order: {order.products.length}</div>
                     {order.products.map((p, pIndex) => (
-                        <div className="mb-4 border border-info" key={pIndex}
+                        <div className="mb-4 border border-secondary " key={pIndex}
                             style={{padding: "20px"}}>
                             {showInput("Product name", p.name)}
                             {showInput("Product price", p.price)}
@@ -103,7 +113,7 @@ const Orders = () => {
 
     const showOrdersLength =() =>{
         if(orders.length>0){
-            return <h1 className='text-danger display-2'>Total Orders:{orders.length}</h1>
+            return <h1 className='display-2' style={{ backgroundColor: '#001233',color: '#EFE0CA',padding:'10px' }}>Total Orders:{orders.length}</h1>
         }
         else return <h1 className='text-danger'>No orders</h1>
     }   
@@ -165,12 +175,13 @@ const Orders = () => {
                     </form>
                     {/* {console.log(results)} */}
                     {searched && searchedProducts(results)}
-                    <h2>All Orders:</h2>
+                    <hr></hr>
+                    <h2 style={{backgroundColor:'#EFE0CA',color:'#001233',padding:'5px',marginBottom:'20px'}}>All Orders:</h2>
                     {orders.map((order,i) => {
                         return(
-                            <div className='card rounded border border-dark p-4 mb-5 bg-dark' key={i}>
-                                <h4 className="card-header bg-success">Order Id: {order._id}</h4>
-                                <div className="card-body rounded border border-success p-2 m-2">
+                            <div className='card rounded border border-dark p-4 mb-5 ' style={{backgroundColor:'#001233'}} key={i}>
+                                <h4 className="card-header " style={{backgroundColor:'#EFE0CA',color:'#001233',marginBottom:'10px'}}>Order Id: {order._id}</h4>
+                                <div className="card-body rounded border p-2 m-2">
                                     <ul className='list-group mb-2'>
                                         <li className='list-group-item'>{showStatus(order)}</li>
                                         <li className='list-group-item'>Transaction ID: {order.transaction_id}</li>
@@ -180,9 +191,9 @@ const Orders = () => {
                                         <li className='list-group-item'>Delivery Address: {order.address}</li>
                                     </ul>
                                 </div>
-                                <div className='card-header bg-info mb-3 mt-5'>Total products in the order: {order.products.length}</div>
+                                <div className='card-header mb-3 mt-5' style={{backgroundColor:'#EFE0CA',color:'#001233'}}>Total products in the order: {order.products.length}</div>
                                 {order.products.map((p, pIndex) => (
-                                    <div className="mb-4 border border-info" key={pIndex}
+                                    <div className="mb-4 border" key={pIndex}
                                         style={{padding: "20px"}}>
                                         {showInput("Product name", p.name)}
                                         {showInput("Product price", p.price)}

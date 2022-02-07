@@ -79,7 +79,7 @@ const Signup = () => {
                 <input onChange={handlePassword()} type="password" className="form-control" value={retype} />
             </div>
 
-            <button onClick={clickSubmit} className="btn btn-primary mt-2">
+            <button onClick={clickSubmit} className="btn btn-dark mt-2">
                 Submit
             </button>
         </form>

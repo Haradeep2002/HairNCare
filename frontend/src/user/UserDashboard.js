@@ -25,10 +25,10 @@ const Dashboard = () => {
                 <h4 className="card-header" style={{ backgroundColor: '#001233', color: '#EFE0CA', padding: '10px' }}>User Links</h4>
                 <ul className="list-group">
                     <li className="list-group-item" style={{ backgroundColor: '#EFE0CA', color: '#001233' }}>
-                        <Link style={{ backgroundColor: '#EFE0CA', color: '#001233' }} className={`nav-link`} to="/cart">My Cart</Link>
+                        <Link style={{ backgroundColor: '#EFE0CA' }} className={`nav-link`} to="/cart">My Cart</Link>
                     </li>
                     <li className="list-group-item" style={{ backgroundColor: '#EFE0CA', color: '#001233' }}>
-                        <Link style={{ backgroundColor: '#EFE0CA', color: '#001233' }} className="nav-link" to={`/profile/${_id}`}>Update Profile</Link>
+                        <Link style={{ backgroundColor: '#EFE0CA' }} className="nav-link" to={`/profile/${_id}`}>Update Profile</Link>
                     </li>
 
                 </ul>
@@ -75,8 +75,13 @@ const Dashboard = () => {
                                             </div>
                                         );
                                     })}
-                                    <h6 className='badge btn-secondary'>Total amount: Rs.{h.amount}</h6><br></br>
-                                    <h6 className='badge btn-dark'>Status: {h.status}</h6>
+                                    <h6 className='badge btn-dark'>Total amount: Rs.{h.amount}</h6><br></br>
+                                    
+                                    
+                                        <h6 className='badge btn-primary'>Status: {h.status}</h6>
+                                    
+                                    
+                                    
                                 </div>
                             );
                         })}
