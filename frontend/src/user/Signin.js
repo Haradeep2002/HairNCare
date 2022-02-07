@@ -4,47 +4,48 @@ import Layout from "../core/Layout";
 import { authenticate } from "../auth";
 import { signin } from "../auth";
 import { Redirect } from "react-router-dom";
+import '../styles.css'
 const Signin = () => {
     const [values, setValues] = useState({
         email: 'test@gmail.com',
         password: '$Test123',
         error: '',
-        loading:false,
-        redirectToReferrer:false
+        loading: false,
+        redirectToReferrer: false
     });
 
-    const {email,password,error,loading,redirectToReferrer } = values;
-    const {user} = isAuthenticated()
+    const { email, password, error, loading, redirectToReferrer } = values;
+    const { user } = isAuthenticated()
 
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value });
     };
 
-    
+
 
     const clickSubmit = event => {
         event.preventDefault();
-        setValues({ ...values, error: false ,loading:true});
-        signin({email, password})
-        .then(data => {
-            if (data.error) {
-                // console.log(data.error.message)
-                if (typeof data.error.message !== 'undefined')
-                setValues({ ...values, error: data.error.message, loading: false }) 
-                else 
-                 setValues({ ...values, error: 'Validation failed', success: false });
-            } else {
-                authenticate(data, () => {
-                    setValues({
-                        ...values,
-                        redirectToReferrer:true
-                    });
-                })
-            }
-        });
+        setValues({ ...values, error: false, loading: true });
+        signin({ email, password })
+            .then(data => {
+                if (data.error) {
+                    // console.log(data.error.message)
+                    if (typeof data.error.message !== 'undefined')
+                        setValues({ ...values, error: data.error.message, loading: false })
+                    else
+                        setValues({ ...values, error: 'Validation failed', success: false });
+                } else {
+                    authenticate(data, () => {
+                        setValues({
+                            ...values,
+                            redirectToReferrer: true
+                        });
+                    })
+                }
+            });
     };
     const signInForm = () => (
-        <form> 
+        <form>
 
             <div className="form-group">
                 <label className="text-muted">Email</label>
@@ -71,10 +72,10 @@ const Signin = () => {
         loading && (<div className="alert alert-info">
             <h2>Loading...</h2>
         </div>)
-    ); 
+    );
 
     const redirectUser = () => {
-        if(redirectToReferrer){
+        if (redirectToReferrer) {
             //console.log(user & user.role===1)
             if (user && user.role === 1) {
                 return <Redirect to="/admin/dashboard" />;
@@ -84,19 +85,18 @@ const Signin = () => {
         }
     }
 
-    return(
+    return (
         <Layout
             title="Signin"
             description="Signin to Node React E-commerce App"
             className="container col-md-8 offset-md-2"
         >
-        {showLoading()}
-        {showError()}
-        {signInForm()}
-        {redirectUser()}
-      </Layout>
+            {showLoading()}
+            {showError()}
+            {signInForm()}
+            {redirectUser()}
+        </Layout>
     )
-  }
-  
-  export default Signin;
-  
+}
+
+export default Signin;

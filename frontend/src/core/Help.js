@@ -30,25 +30,26 @@ const Help = (props) => {
                 <div style={{ display: 'flex', flexWrap: 'wrap' }} >
                     <div className='card1' onClick={handleh1}>
                         <img src="https://tdhqaconsumer.tatahealth.com/v3/prod/css/landingPage/images/hairderma1.jpg?v=3.59" height={'300px'} width={'400px'}></img>
-                        <h2 style={{ padding: '20px', marginLeft: '20%', color: 'white' }}>Hair Fall</h2>
+                        <h2 style={{ padding: '20px', marginLeft: '20%' }}>Hair Fall</h2>
                     </div >
                     <div className='card1' onClick={handleh2}>
                         <img src="https://tdhqaconsumer.tatahealth.com/v3/prod/css/landingPage/images/hairderma2.jpg?v=3.59" height={'300px'} width={'400px'}></img>
-                        <h2 style={{ padding: '20px', marginLeft: '20%', color: 'white' }}>Male pattern Baldness</h2>
+                        <h2 style={{ padding: '20px', marginLeft: '20%' }}>Male pattern Baldness</h2>
                     </div>
                     <div className='card1' onClick={handleh3}>
                         <img src="https://tdhqaconsumer.tatahealth.com/v3/prod/css/landingPage/images/hairderma3.jpg?v=3.59" height={'300px'} width={'400px'}></img>
-                        <h2 style={{ padding: '20px', marginLeft: '20%', color: 'white' }}>Dandruff</h2></div>
+                        <h2 style={{ padding: '20px', marginLeft: '20%' }}>Dandruff</h2></div>
                     <div className='card1' onClick={handleh4}>
                         <img src="https://tdhqaconsumer.tatahealth.com/v3/prod/css/landingPage/images/hairderma4.jpg?v=3.59" height={'300px'} width={'400px'}></img>
-                        <h2 style={{ padding: '20px', marginLeft: '20%', color: 'white' }}>Hair Thinning</h2></div>
+                        <h2 style={{ padding: '20px', marginLeft: '20%' }}>Hair Thinning</h2></div>
                     <div className='card1' onClick={handleh5}>
                         <img src="https://tdhqaconsumer.tatahealth.com/v3/prod/css/landingPage/images/hairderma5.jpg?v=3.59" height={'300px'} width={'400px'}></img>
-                        <h2 style={{ padding: '20px', marginLeft: '20%', color: 'white' }}>Split ends</h2></div>
+                        <h2 style={{ padding: '20px', marginLeft: '20%' }}>Split ends</h2></div>
                     <div className='card1' onClick={handleh6} >            <img src="https://tdhqaconsumer.tatahealth.com/v3/prod/css/landingPage/images/hairderma6.jpg?v=3.59" height={'300px'} width={'400px'}></img>
-                        <h2 style={{ padding: '20px', marginLeft: '20%', color: 'white' }}>Hair Growth</h2></div></div >
-            </Layout>
+                        <h2 style={{ padding: '20px', marginLeft: '20%' }}>Hair Growth</h2></div></div >
+            </Layout >
         </div>
+
     )
 }
 
