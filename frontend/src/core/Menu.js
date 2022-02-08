@@ -49,6 +49,7 @@ const Menu = (props) => {
             <li className="nav-item" >
                 <Link className="nav-link" style={isActive(props.history, '/help')} to="/help">Need Help?</Link>
             </li>
+
         </ul>
         <ul className={`nav nav-tabs justify-content-end ${classes.nav}`} style={{ float: 'right', width: '50%', margin: '0', padding: '0' }}>
             {!isAuthenticated() &&

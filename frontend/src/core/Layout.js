@@ -9,6 +9,7 @@ const Layout = ({ title = 'Title', description = 'description', className1, chil
             <div><Menu></Menu></div>
 
             <div className={` ${classes.myclass} container-fluid p-1 text-center`}>
+
                 <h2 >{title}</h2>
                 <p className="Lead">{description}...</p>
             </div>

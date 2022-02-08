@@ -1,4 +1,4 @@
-import React,{ Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 const Signin = lazy(() => import('./user/Signin'));
 const Signup = lazy(() => import('./user/Signup'));
@@ -31,35 +31,35 @@ const NotFound = lazy(() => import('./notfound'));
 const Routes = () => {
     return (
         <BrowserRouter>
-        <Suspense fallback={<div style={{backgroundColor: '#001233' }}>
-    <h1 style={{color: '#EFE0CA'}}>Loading...</h1>
-  </div>}>
-            <Switch>
-                <Route path="/" exact component={Home}></Route>
-                <Route path="/shop" exact component={Shop}></Route>
-                <Route path="/signin" exact component={Signin}></Route>
-                <Route path="/signup" exact component={Signup}></Route>
-                <Route path="/Hairfall" exact component={Hairfall}></Route>
-                <Route path="/Growth" exact component={Growth}></Route>
-                <Route path="/Split" exact component={Split}></Route>
-                <Route path="/Dandruff" exact component={Dandruff}></Route>
-                <Route path="/Baldness" exact component={Baldness}></Route>
-                <Route path="/Thin" exact component={Thin}></Route>
-                <Route path="/help" exact component={Help}></Route>
-                <PrivateRoute path="/user/dashboard" exact component={Dashboard}></PrivateRoute>
-                <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}></AdminRoute>
-                <AdminRoute path="/create/category" exact component={AddCategory}></AdminRoute>
-                <AdminRoute path="/create/product" exact component={AddProduct}></AdminRoute>
-                <AdminRoute path="/product/photo" exact component={ProductImage} />
-                <Route path="/product/:id" exact component={Product}></Route>
-                <Route path="/cart" exact component={Cart}></Route>
-                <AdminRoute path="/admin/orders" exact component={Orders} />
-                <PrivateRoute path="/profile/:userId" exact component={Profile}></PrivateRoute>
-                <PrivateRoute path="/admin/products" exact component={ManageProducts}></PrivateRoute>
-                <AdminRoute path="/admin/product/update/:id" exact component={UpdateProduct}></AdminRoute>
-                <AdminRoute path="/admin/blog" exact component={Blog}></AdminRoute>
-                <Route component={NotFound} ></Route>
-            </Switch>
+            <Suspense fallback={<div style={{ backgroundColor: '#001233' }}>
+                <h1 style={{ color: '#EFE0CA' }}>Loading...</h1>
+            </div>}>
+                <Switch>
+                    <Route path="/" exact component={Home}></Route>
+                    <Route path="/shop" exact component={Shop}></Route>
+                    <Route path="/signin" exact component={Signin}></Route>
+                    <Route path="/signup" exact component={Signup}></Route>
+                    <Route path="/Hairfall" exact component={Hairfall}></Route>
+                    <Route path="/Growth" exact component={Growth}></Route>
+                    <Route path="/Split" exact component={Split}></Route>
+                    <Route path="/Dandruff" exact component={Dandruff}></Route>
+                    <Route path="/Baldness" exact component={Baldness}></Route>
+                    <Route path="/Thin" exact component={Thin}></Route>
+                    <Route path="/help" exact component={Help}></Route>
+                    <PrivateRoute path="/user/dashboard" exact component={Dashboard}></PrivateRoute>
+                    <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}></AdminRoute>
+                    <AdminRoute path="/create/category" exact component={AddCategory}></AdminRoute>
+                    <AdminRoute path="/create/product" exact component={AddProduct}></AdminRoute>
+                    <AdminRoute path="/product/photo" exact component={ProductImage} />
+                    <Route path="/product/:id" exact component={Product}></Route>
+                    <Route path="/cart" exact component={Cart}></Route>
+                    <AdminRoute path="/admin/orders" exact component={Orders} />
+                    <PrivateRoute path="/profile/:userId" exact component={Profile}></PrivateRoute>
+                    <PrivateRoute path="/admin/products" exact component={ManageProducts}></PrivateRoute>
+                    <AdminRoute path="/admin/product/update/:id" exact component={UpdateProduct}></AdminRoute>
+                    <AdminRoute path="/admin/blog" exact component={Blog}></AdminRoute>
+                    <Route component={NotFound} ></Route>
+                </Switch>
             </Suspense>
         </BrowserRouter>
     )
